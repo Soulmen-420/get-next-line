@@ -1,0 +1,16 @@
+This project consist of writing a function get_next_line which get the next line in a file.
+
+There are some features this function must implement:
+
+we only use libft.
+we need to implement a buffer. We can't come back in the file descriptor. We can't move in the file descriptor. We can only use read, free, malloc. No call to lseek.
+we can't use global variable.
+we can't use FILE structure. We need to create one.
+we can read multiple file descriptors at the same time (which implies a buffer).
+we can't have memory leaks: every malloc must be freed.
+the buffer size (use by read) can be changed.
+
+
+The function uses only one static variable to remeber what is left from the last call from read. This static memory is a pointer to a pointer. on the first level thre are multiple slot of memory. Each of this slots is unique for each filedescriptor, it will point to a string that will have the remainder buff from the last call to read if the file descriptor has been called.
+
+The function will check if there is a past buffer left every time it is called and add it to the result line. then it will go read the actual file concatenating what has been read at every loop of read. when it encounters a buffer with a new line it concatenates to the result line only the buffer till the new line and the new buffer will be updated to the sub string after the new line.
