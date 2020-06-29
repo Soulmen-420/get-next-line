@@ -1,7 +1,2 @@
 break get_next_line
 
-
-
-
-
-
